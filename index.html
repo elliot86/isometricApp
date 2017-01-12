@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="isometricApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="todo.js"></script>
+    
+    <style>
+      body {
+        text-align: center;
+      }
+      .complete {
+        text-decoration: line-through;
+      }
+      ul {
+        list-style: none;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h2>Elliot's Isometric List</h2>
+    <div ng-controller="IsometricListController as isometricList">
+      <span>{{isometricList.remaining()}} of {{isometricList.todos.length}} remaining</span>
+      [ <a href="" ng-click="isometricList.archive()">archive</a> ]
+      <ul style="list-style: none">
+        <li ng-repeat="todo in isometricList.todos">
+          <input type="checkbox" ng-model="todo.done">
+          <span ng-class="{'complete': todo.done}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="isometricList.addTodo()">
+        <input type="text" ng-model="isometricList.todoText" size="30" placeholder="Add new isometric">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </body>
+</html>
